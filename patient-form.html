@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration Form</title>
+    <link href="styles.css" rel="stylesheet"> <!-- Link to external CSS -->
+    <script src="validate.js" defer></script>  
+    <script src="cookies.js" defer></script>  <!-- Link to external JavaScript -->
+</head>
+<body>
+    
+
+    <header id="banner">
+        <img src="file.png" alt="Company Logo">
+        <img src="logo-png_processed.png" alt="Company Logo">
+        <div id="date-banner">
+            <h1 id="welcomeMessage">Welcome!</h1>
+            <a href="#" id="resetLink" onclick="resetUser()">Click here</a> to reset and start as a new user.
+        </div>
+    </header>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <p>We found your saved form data. Would you like to continue where you left off?</p>
+            <button id="restoreData">Yes</button>
+            <button id="clearData">No, Start Fresh</button>
+        </div>
+    </div>
+    <main>
+    <h1>Patient Registration Form</h1>
+    <form id="patientForm" action="thankyouform.html" method="GET" onsubmit="saveUserData(event)">
+        <table>
+            <tr>
+                <td><label for="firstName">First Name:</label></td>
+                <td><input type="text" id="firstName" name="firstName" maxlength="30" required pattern="[A-Za-z]+"  title="Enter your first name" required></td>
+            </tr>
+            <tr>
+        
+                <td><label for="middleName">Middle Name:</label></td>
+                <td><input type="text" id="middleName" name="middleName" maxlength="30" required pattern="[A-Za-z]+" title="Enter your middle name"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name:</label></td>
+                <td><input type="text" id="lastName" name="lastName" maxlength="30" required pattern="[A-Za-z]+"  title="Enter your last name" required></td>
+            </tr>
+            <tr>
+                <td><label for="dob">DOB:</label></td>
+                <td><input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" title="Enter your date of birth" pattern="^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/([0-9]{4})$" required></td>
+            </tr>
+            <tr>
+                <td><label for="ssn">Social Security:</label></td>
+                <td><input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" title="Enter your SSN" pattern="^\d{3}-\d{2}-\d{4}$" required></td>
+            </tr>
+            <tr>
+                <td><label for="address1">Address Line 1:</label></td>
+                <td><input type="text" id="address1" name="address1" maxlength="30" title="Enter your address" required></td>
+            </tr>
+            <tr>
+                <td><label for="address2">Address Line 2:</label></td>
+                <td><input type="text" id="address2" name="address2" maxlength="30" title="Enter your address (optional)"></td>
+            </tr>
+            <tr>
+                <td><label for="city">City:</label></td>
+                <td><input type="text" id="city" name="city" maxlength="30" title="Enter your city" required></td>
+            </tr>
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td>
+                    <select id="state" name="state" title="Select your state" required>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="zip">Zip Code:</label></td>
+                <td><input type="text" id="zip" name="zip" maxlength="10" placeholder="XXXXX or XXXXX-XXXX" title="Enter your zip code" pattern="^\d{5}(-\d{4})?$" required></td>
+            </tr>
+            <tr>
+                <td><label>Have you had:</label></td>
+                <td>
+                    <label><input type="checkbox" name="disease" value="Chicken Pox"> Chicken Pox</label><br>
+                    <label><input type="checkbox" name="disease" value="Measles"> Measles</label><br>
+                    <label><input type="checkbox" name="disease" value="Covid-19"> Covid-19</label><br>
+                    <label><input type="checkbox" name="disease" value="Flu"> Flu</label><br>
+                    <label><input type="checkbox" name="disease" value="Other"> Other</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Have you been vaccinated?</label></td>
+                <td>
+                    <label><input type="radio" name="vaccinationStatus" value="yes" required> Yes</label>
+                    <label><input type="radio" name="vaccinationStatus" value="no"> No</label>
+                    <label><input type="radio" name="vaccinationStatus" value="unsure"> Unsure</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="salary">Household Income:</label></td>
+                <td>
+                    <input type="range" id="salary" name="salary" min="20000" max="200000" step="1000" oninput="updateSalary(this.value)">
+                    <span id="salaryDisplay">$20,000</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" placeholder="example@gmail.com" title="Enter a valid email address" required></td>
+            </tr>
+            <tr>
+                <td><label for="symptoms">Describe Your Symptoms:</label></td>
+                <td><textarea id="symptoms" name="symptoms" rows="3" cols="50" title="Describe your symptoms" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="username">Username:</label></td>
+                <td><input type="username" id="username" name="username" title="Enter Username" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" title="Enter a strong password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
+            </tr>
+            <tr>
+                <td><label for="rePassword">Re-enter Password:</label></td>
+                <td><input type="password" id="rePassword" name="rePassword" title="Re-enter your password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" onclick="resetForm()">Reset</button>
+                    <button type="button" onclick="showReview()">Review</button>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="rememberMe">Remember Me:</label></td>
+                <td><input type="checkbox" id="rememberMe" name="rememberMe" checked></td>
+            </tr>
+        </table>
+    </form>
+    <div id="iframe-container">
+        <h2>Know more about us on search:</h2>
+        <iframe src="https://www.wikipedia.org/" width="100%" height="400px" frameborder="0" title="Know about us">
+            Your browser does not support iframes.
+        </iframe>
+    </div>
+    </div>
+</main>
+    
+
+    <!-- Review Section -->
+    <div id="reviewSection" style="display: none;">
+        <h2>Review Your Information</h2>
+            <p><strong>First Name:</strong> <span id="reviewFirstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="reviewLastName"></span></p>
+            <p><strong>DOB:</strong> <span id="reviewDOB"></span></p>
+            <p><strong>SSN:</strong> <span id="reviewSSN"></span></p>
+            <p><strong>Address 1:</strong> <span id="reviewAddress1"></span></p>
+            <p><strong>Address 2:</strong> <span id="reviewAddress2"></span></p>
+            <p><strong>City:</strong> <span id="reviewCity"></span></p>
+            <p><strong>State:</strong> <span id="reviewState"></span></p>
+            <p><strong>Zip Code:</strong> <span id="reviewZip"></span></p>
+            <p><strong>Diseases:</strong> <span id="reviewDisease"></span></p>
+            <p><strong>Vaccination Status:</strong> <span id="reviewVaccinationStatus"></span></p>
+            <p><strong>Household Income:</strong> <span id="reviewSalary"></span></p>
+            <p><strong>Email:</strong> <span id="reviewEmail"></span></p>
+            <p><strong>Symptoms:</strong> <span id="reviewSymptoms"></span></p>
+            <p><strong>Username:</strong> <span id="reviewUsername"></span></p>
+            <p><strong>Password:</strong> <span>********</span></p> <!-- Masked password -->
+            <button type="submit" onclick="validatePasswords()">Submit</button>
+
+    <button onclick="hideReview()">Edit</button>
+    </div>
+    
+    <footer>
+        <p>MediCare Meds | <a href="mailto:medicaremedsexample@gmail.com">Contact Us</a> | <a href="https://facebook.com">Facebook</a> | <a href="https://twitter.com">Twitter</a></p>
+    </footer>
+</body>
+</html>
